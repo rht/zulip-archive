@@ -103,19 +103,19 @@ fi
 
 echo "delete history: $delete_history"
 
-if [[ "$delete_history" == "true" ]]
-then
-    echo "resetting"
-    rm -rf .git
-    git config --global init.defaultBranch "$archive_branch"
-    git init
-fi
+# if [[ "$delete_history" == "true" ]]
+# then
+#     echo "resetting"
+#     rm -rf .git
+#     git config --global init.defaultBranch "$archive_branch"
+#     git init
+# fi
 
 git config --global user.email "zulip-archive-bot@users.noreply.github.com"
 git config --global user.name "Archive Bot"
 
 git add -A
-git commit -m "Update archive."
+git commit --amend -m "Update archive."
 
 git remote add origin2 https://${GITHUB_ACTOR}:${github_token}@github.com/${GITHUB_REPOSITORY}
 
